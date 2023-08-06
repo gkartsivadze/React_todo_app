@@ -1,0 +1,20 @@
+{
+    "profiles" : [
+        {
+            "login": "giorgi",
+            "password": "1234"
+        },
+        {
+            "login": "gio",
+            "password": "gio"
+        },
+        {
+            "login": "lasha",
+            "password": "lasha"
+        },
+        {
+            "login": "tika",
+            "password": "tika"
+        }
+    ]
+}
