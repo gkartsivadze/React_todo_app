@@ -2,6 +2,9 @@ import React from "react";
 
 import { profiles } from '../users.json'
 
+import { LOGIN, LOGOUT } from "../redux/actions";
+import { connect } from "react-redux";
+
 class SignIn extends React.Component {
     constructor(props) {
         super(props)
@@ -34,11 +37,15 @@ class SignIn extends React.Component {
       }
     }
 
-    componentDidUpdate(prev, current) {
-        console.log(current)
+
+    handleClick(e) {
+      this.props.LOGIN(Math.round(Math.random() * 100));
+      console.log(this.props.loginState)
     }
 
     render() {
+
+      
         return (
       <section id="form_wrapper">
         <form id="login_form" onSubmit={this.checkData.bind(this)}>
@@ -52,9 +59,25 @@ class SignIn extends React.Component {
           </label>
           <button>Sign in</button>
         </form>
+        <button onClick={this.handleClick.bind(this)}>
+          SignSwitch
+        </button>
       </section>
         )
     }
 }
 
-export default SignIn;
+const mapStateToProps = (state) => {
+  return {
+    loginState: { state: state.current, id: state.code}
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    LOGIN: (userId) => dispatch(LOGIN(userId)),
+    LOGOUT: () => dispatch(LOGOUT())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
