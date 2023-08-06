@@ -1,14 +1,20 @@
-import { Outlet } from "react-router-dom"
+import React from "react";
+import { Outlet } from "react-router-dom";
 
-function App() {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <>
-      <main>
-        <Outlet />
-      </main>
-    </>
-  )
+  render() {
+    return (
+      <>
+        <main>
+          <Outlet />
+        </main>
+      </>
+    );
+  }
 }
 
-export default App
+export default App;

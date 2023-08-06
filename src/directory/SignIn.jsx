@@ -1,4 +1,5 @@
 import React from "react";
+import { Navigate } from "react-router-dom"
 
 import { profiles } from '../users.json'
 
@@ -20,6 +21,7 @@ class SignIn extends React.Component {
             [e.target.name]: e.target.value
         })
     }
+
     checkData(e) {
       e.preventDefault();
 
@@ -30,26 +32,31 @@ class SignIn extends React.Component {
 
     compareProfiles(e) {
       let foundProfile = profiles?.find(x => x.login == this.state.login);
-      if(foundProfile && this.state.password == foundProfile.password) {
+      if(foundProfile && this.state.password === foundProfile.password) {
         this.props.LOGIN(foundProfile.login);
       } else {
-        console.log("Try again")
+        this.props.LOGOUT();
       }
     }
 
     render() {
-      
+      if(this.props.loginState.state) {
+        return <Navigate to="/welcome" />
+      };
         return (
       <section id="form_wrapper">
         <form id="login_form" onSubmit={this.checkData.bind(this)}>
           <label>
             Username
-            <input onChange={this.synchronize.bind(this)} name="login" type="text" required />
+            <input onChange={(e) => this.setState({[e.target.name]: e.target.value})} name="login" type="text" required />
           </label>
           <label>
             Password
-            <input onChange={this.synchronize.bind(this)} name="password" type="password" required />
+            <input onChange={(e) => this.setState({[e.target.name]: e.target.value})} name="password" type="password" required />
           </label>
+          {
+            this.props.loginState.state ? <p>You are logged in!</p> : <p style={{color: "red"}}>Please enter correct password</p>
+          }
           <button>Sign in</button>
         </form>
       </section>
