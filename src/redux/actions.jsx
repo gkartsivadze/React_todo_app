@@ -1,13 +1,12 @@
-export const LOGIN = (code) => {
+export const LOGIN = (username) => {
     return {
         type: "LOGIN",
-        payload: code
+        username
     }
 }
 
-export const LOGOUT = (code) => {
+export const LOGOUT = () => {
     return {
-        type: "LOGOUT",
-        payload: code
+        type: "LOGOUT"
     }
 }

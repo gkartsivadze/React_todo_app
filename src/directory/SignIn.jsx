@@ -29,22 +29,15 @@ class SignIn extends React.Component {
     }
 
     compareProfiles(e) {
-      let findProfile = profiles?.find(x => x.login == this.state.login);
-      if(findProfile && this.state.password == findProfile.password) {
-        alert("Logged In")
+      let foundProfile = profiles?.find(x => x.login == this.state.login);
+      if(foundProfile && this.state.password == foundProfile.password) {
+        this.props.LOGIN(foundProfile.login);
       } else {
         console.log("Try again")
       }
     }
 
-
-    handleClick(e) {
-      this.props.LOGIN(Math.round(Math.random() * 100));
-      console.log(this.props.loginState)
-    }
-
     render() {
-
       
         return (
       <section id="form_wrapper">
@@ -59,9 +52,6 @@ class SignIn extends React.Component {
           </label>
           <button>Sign in</button>
         </form>
-        <button onClick={this.handleClick.bind(this)}>
-          SignSwitch
-        </button>
       </section>
         )
     }
@@ -69,13 +59,13 @@ class SignIn extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    loginState: { state: state.current, id: state.code}
+    loginState: { state: state.current, username: state.username}
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    LOGIN: (userId) => dispatch(LOGIN(userId)),
+    LOGIN: (name) => dispatch(LOGIN(name)),
     LOGOUT: () => dispatch(LOGOUT())
   };
 };

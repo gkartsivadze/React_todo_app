@@ -1,21 +1,21 @@
 import { createStore } from "redux";
 
-export const loginStateReducer = (state = { current: false, code: 0}, action) => {
+export const loginStateReducer = (state = { current: false, username: "" }, action) => {
     switch(action.type) {
         case "LOGIN":
             return {
-                current: !state.current,
-                code: action.payload
+                current: true,
+                username: action.username
             }
         case "LOGOUT":
             return {
                 current: false,
-                code: 0
+                username: ""
             }
         default:
             return {
                 current: state.current,
-                code: state.code
+                username: state.username
             }
     }
 }
