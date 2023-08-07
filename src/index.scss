@@ -1,5 +1,10 @@
+@font-face {
+  font-family: Poppins;
+  src: url(./assets/Poppins-Regular.ttf);
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Poppins", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 * {
@@ -33,11 +38,49 @@ main {
 #menu_bar {
   display: grid;
   grid-auto-flow: row;
-  background: grey;
+  grid-auto-rows: max-content;
+  background: radial-gradient(25rem at 5% 10%, rgb(11, 0, 50), transparent),
+              radial-gradient(25rem at 75% 60%, rgb(0, 69, 84), transparent) black;
+  padding-top: 2rem;
+
+  color: white;
+  text-transform: uppercase;
+  input {
+    position: absolute;
+    appearance: none;
+    &:checked + label {
+      background: linear-gradient(to right, rgb(0, 64, 191), transparent);
+    }
+  }
   label {
     padding: 2rem;
+    cursor: pointer;
     &:hover {
       background: rgb(175, 175, 175);
+    }
+  }
+}
+
+.view {
+  padding: 4rem;
+}
+
+#pending {
+  h1 {
+    padding-bottom: 1rem;
+    text-align: center;
+  }
+  table {
+    width: 100%;
+    thead tr {
+      background-color: rgb(77, 77, 77);
+      color: white;
+    }
+    td {
+      padding: 1rem;
+    }
+    tr:nth-of-type(even) {
+      background-color: rgba(0, 0, 0, 0.2);
     }
   }
 }

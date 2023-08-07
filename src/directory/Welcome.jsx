@@ -1,5 +1,15 @@
 import React from "react";
 
+import { connect } from "react-redux"
+
+import { LOGOUT } from "../redux/actions"
+
+import Main from "./menus/Main"
+import Staff from "./menus/Staff"
+import Pending from "./menus/Pending"
+import Logout from "./menus/Logout"
+import { Navigate } from "react-router-dom";
+
 class Welcome extends React.Component {
     constructor(props) {
         super(props)
@@ -9,25 +19,49 @@ class Welcome extends React.Component {
     }
 
     synchronizeMenu(e) {
-        this.setState({selectedMenu: e.target.value});
+        const selectedMenu = e.target.value;
+        if (selectedMenu === "logout") {
+            this.props.LOGOUT();
+        } else {
+            this.setState({ selectedMenu });
+        }
     }
 
+
     render() {
+        if(!this.props.loginState) {
+            return <Navigate to="/" />
+        }
         return (
             <main id="welcome_page">
                 <aside id="menu_bar" onChange={this.synchronizeMenu.bind(this)}>
-                    <label>Main<input value="main" type="radio" name="selected_menu" defaultChecked /></label>
-                    <label>Staff<input value="staff" type="radio" name="selected_menu" /></label>
-                    <label>Pending<input value="pending" type="radio" name="selected_menu" /></label>
-                    <label>Log out<input value="logout" type="radio" name="selected_menu" /></label>
+                    <input id="main" value="main" type="radio" name="selected_menu" defaultChecked />
+                    <label htmlFor="main">Main</label>
+                    <input id="staff" value="staff" type="radio" name="selected_menu" />
+                    <label htmlFor="staff">Staff</label>
+                    <input id="pending" value="pending" type="radio" name="selected_menu" />
+                    <label htmlFor="pending">Pending</label>
+                    <input id="logout" value="logout" type="radio" name="selected_menu" />
+                    <label htmlFor="logout">Log out</label>
                 </aside>
-                { this.state.selectedMenu == "main" && <aside id="view">main</aside> }
-                { this.state.selectedMenu == "staff" && <aside id="view">staff</aside> }
-                { this.state.selectedMenu == "pending" && <aside id="view">pending</aside> }
-                { this.state.selectedMenu == "logout" && <aside id="view">log out</aside> }
+                { this.state.selectedMenu == "main" && <Main /> }
+                { this.state.selectedMenu == "staff" && <Staff /> }
+                { this.state.selectedMenu == "pending" && <Pending /> }
             </main>
         )
     }
 }
 
-export default Welcome;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        LOGOUT: () => dispatch(LOGOUT())
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        loginState: state.current
+    }
+}
+
+export default connect(mapStateToProps ,mapDispatchToProps)(Welcome);
