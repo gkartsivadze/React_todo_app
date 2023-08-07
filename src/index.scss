@@ -2,9 +2,17 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-#form_wrapper {
+* {
+  margin: 0;
+  padding: 0;
+}
+
+main {
   min-height: 100vh;
   display:grid;
+}
+
+#login_page {
   place-items: center;
 }
 
@@ -15,5 +23,21 @@
 
   label, input {
     display: block;
+  }
+}
+
+#welcome_page {
+  grid-template-columns: 0.2fr 1fr;
+}
+
+#menu_bar {
+  display: grid;
+  grid-auto-flow: row;
+  background: grey;
+  label {
+    padding: 2rem;
+    &:hover {
+      background: rgb(175, 175, 175);
+    }
   }
 }
