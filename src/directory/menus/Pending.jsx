@@ -12,8 +12,8 @@ class Pending extends React.Component {
                             <th>No.</th>
                             <th>Name</th>
                             <th>Last Name</th>
-                            <th>Position</th>
-                            <th>Planned meeting time</th>
+                            <th>Location</th>
+                            <th>Phone number</th>
                         </tr>
                     </thead>
                     <tbody>
