@@ -5,11 +5,20 @@
 
 :root {
   font-family: "Poppins", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: white;
+}
+
+button, input, textarea {
+  color: white;
 }
 
 * {
   margin: 0;
   padding: 0;
+}
+
+a {
+  color: grey;
 }
 
 main {
@@ -19,6 +28,34 @@ main {
 
 #login_page {
   place-items: center;
+  background: linear-gradient(to right, rgb(163, 0, 0), rgb(0, 0, 163))
+}
+
+button {
+  background: transparent;
+  border: 1px solid greenyellow;
+
+  padding: 1rem 3rem;
+  cursor: pointer;
+
+  font-size: 1rem;
+  border-radius: 3rem;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+input {
+  background: transparent;
+  border: 1px solid;
+  border-radius: 3rem;
+  &[type="text"],
+  &[type="password"] {
+    border-color: cyan;
+    &::placeholder {
+      color: grey;
+    }
+  }
 }
 
 #login_form {
@@ -26,8 +63,18 @@ main {
   gap: 1rem;
   place-items: center;
 
-  label, input {
-    display: block;
+  background: black;
+  padding: 3rem 5rem;
+  
+  input {
+    box-sizing: border-box;
+    padding: 1rem;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  p {
+    color: grey;
   }
 }
 
@@ -42,8 +89,6 @@ main {
   background: radial-gradient(25rem at 5% 10%, rgb(11, 0, 50), transparent),
               radial-gradient(25rem at 75% 60%, rgb(0, 69, 84), transparent) black;
   padding-top: 2rem;
-
-  color: white;
   text-transform: uppercase;
   input {
     position: absolute;
@@ -74,7 +119,6 @@ main {
     width: 100%;
     thead tr {
       background-color: rgb(77, 77, 77);
-      color: white;
     }
     td {
       padding: 1rem;

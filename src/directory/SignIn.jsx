@@ -55,28 +55,7 @@ class SignIn extends React.Component {
     return (
       <main id="login_page">
           <form id="login_form" onSubmit={this.checkData.bind(this)}>
-            <label>
-              Username
-              <input
-                onChange={(e) =>
-                  this.setState({ [e.target.name]: e.target.value })
-                }
-                name="login"
-                type="text"
-                required
-              />
-            </label>
-            <label>
-              Password
-              <input
-                onChange={(e) =>
-                  this.setState({ [e.target.name]: e.target.value })
-                }
-                name="password"
-                type="password"
-                required
-              />
-            </label>
+            <h1>LOGIN</h1>
             {this.state.tryedLogin ? (
               this.props.loginState.state ? (
                 <p>You are logged in!</p>
@@ -84,9 +63,28 @@ class SignIn extends React.Component {
                 <p style={{ color: "red" }}>Please enter correct password</p>
               )
             ) : (
-              <p>Type your login and password</p>
+              <p>Please enter your login and password!</p>
             )}
-            <button>Sign in</button>
+              <input
+                onChange={(e) =>
+                  this.setState({ [e.target.name]: e.target.value })
+                }
+                name="login"
+                type="text"
+                placeholder="username"
+                required
+              />
+              <input
+                onChange={(e) =>
+                  this.setState({ [e.target.name]: e.target.value })
+                }
+                name="password"
+                type="password"
+                placeholder="password"
+                required
+              />
+              <a href="#">Forgot your password?</a>
+            <button>Login</button>
           </form>
       </main>
     );
