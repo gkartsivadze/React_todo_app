@@ -20,6 +20,7 @@ class Welcome extends React.Component {
     synchronizeMenu(e) {
         const selectedMenu = e.target.value;
         if (selectedMenu === "logout") {
+            localStorage.removeItem("loginState");
             this.props.LOGOUT();
         } else {
             this.setState({ selectedMenu });

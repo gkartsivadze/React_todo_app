@@ -41,8 +41,15 @@ class SignIn extends React.Component {
     }
   }
 
+  componentWillMount() {
+    if(localStorage.getItem("loginState")) {
+      this.props.LOGIN();
+    }
+  }
+
   render() {
     if (this.props.loginState.state) {
+      localStorage.setItem("loginState", true);
       return <Navigate to="/welcome" />;
     }
     return (
