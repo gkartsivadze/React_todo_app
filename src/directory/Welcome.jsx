@@ -7,7 +7,6 @@ import { LOGOUT } from "../redux/actions"
 import Main from "./menus/Main"
 import Staff from "./menus/Staff"
 import Pending from "./menus/Pending"
-import Logout from "./menus/Logout"
 import { Navigate } from "react-router-dom";
 
 class Welcome extends React.Component {

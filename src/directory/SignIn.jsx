@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 
 import { profiles } from "../users.json";
 
-import { LOGIN, LOGOUT } from "../redux/actions";
+import { LOGIN } from "../redux/actions";
 import { connect } from "react-redux";
 
 class SignIn extends React.Component {
@@ -33,13 +33,11 @@ class SignIn extends React.Component {
 
   compareProfiles(e) {
     let foundProfile = profiles?.find((x) => x.login == this.state.login);
+    if (!this.state.tryedLogin) {
+      this.setState({ tryedLogin: true });
+    }
     if (foundProfile && this.state.password === foundProfile.password) {
       this.props.LOGIN(foundProfile.login);
-    } else {
-      this.props.LOGOUT();
-    }
-    if (this.state.tryedLogin) {
-      this.setState({ tryedLogin: true });
     }
   }
 
@@ -96,8 +94,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    LOGIN: (name) => dispatch(LOGIN(name)),
-    LOGOUT: () => dispatch(LOGOUT()),
+    LOGIN: (name) => dispatch(LOGIN(name))
   };
 };
 
